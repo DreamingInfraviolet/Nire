@@ -1,0 +1,20 @@
+{
+	"name": "Nire",
+	"version": "0.0.1",
+	"description": "A text editor for writers :)",
+	"author": "Volodymyr Sereda <lightofanima@gmail.com>",
+	"scripts": {
+	"start": "electron ."
+	},
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/LightOfAnima/Nire"
+	},
+	"keywords": ["text", "editor", "writer", "writers", "writing"],
+	"private": true,
+	"dependencies": {
+		"gulp": "3.9.x",
+		"electron-prebuilt": "1.x.x"
+	}
+}

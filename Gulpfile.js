@@ -16,19 +16,19 @@ gulp.task("stylus", function() {
     return gulp.src('src/stylus/**/*')
         .pipe(stylus({
           compress: true
-        }))
+        })).on("error", error)
         .pipe(gulp.dest('build/css/'));
 })
 
 gulp.task("copy-files", function() {
-    return gulp.src(["src/js/**/*", "src/html/**/*"])
+    return gulp.src(["src/js/**/*", "src/html/**/*", "src/fonts/**/*"])
         .pipe(gulp.dest("./build/"))
 })
 
 gulp.task("build", ["coffeescript", "stylus", "copy-files"])
 
 gulp.task("watch", () => {
-    gulp.watch("src/themes/**/*.styl", ["stylus"])
+    gulp.watch("src/stylus/**/*.styl", ["stylus"])
     gulp.watch("src/coffeescript/**/*.coffee", ["coffeescript"])
     gulp.watch(["src/js/**/*", "src/html/**/*"], ["copy-files"])
 })

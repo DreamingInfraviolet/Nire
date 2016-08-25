@@ -4,7 +4,7 @@
 	"description": "A text editor for writers :)",
 	"author": "Volodymyr Sereda <lightofanima@gmail.com>",
 	"scripts": {
-	"start": "electron ."
+	"start": "electron build"
 	},
 	"main": "index.js",
 	"repository": {
@@ -15,6 +15,8 @@
 	"private": true,
 	"dependencies": {
 		"gulp": "3.9.x",
-		"electron-prebuilt": "1.x.x"
+		"electron-prebuilt": "1.x.x",
+		"gulp-stylus": "2.x.x",
+		"gulp-coffee": "2.x.x"
 	}
 }

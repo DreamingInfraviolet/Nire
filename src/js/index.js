@@ -1,7 +1,9 @@
 const electron = require("electron");
 
-const BrowserWindow = electron.BrowserWindow
+const BrowserWindow = electron.BrowserWindow;
 const app = electron.app;
+
+require('electron-reload')(__dirname);
 
 let mainWindow = null
 
@@ -10,7 +12,9 @@ function createWindow() {
 		width: 800, height: 600
 	});
 
-	mainWindow.loadURL("file://${__dirname}/index.html");
+	mainWindow.loadURL(`file://${__dirname}/index.html`);
+	mainWindow.webContents.openDevTools();
+	mainWindow.setMenu(null);
 
 	mainWindow.on("close", function() {
 		mainWindow = null;

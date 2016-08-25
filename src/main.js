@@ -5,14 +5,14 @@ const app = electron.app;
 
 require('electron-reload')(__dirname);
 
-let mainWindow = null
+let mainWindow = null;
 
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 800, height: 600
 	});
 
-	mainWindow.loadURL(`file://${__dirname}/index.html`);
+	mainWindow.loadURL(`file://${__dirname}/windows/main/main.html`);
 	mainWindow.webContents.openDevTools();
 	mainWindow.setMenu(null);
 

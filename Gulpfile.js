@@ -1,10 +1,19 @@
 gulp = require("gulp")
 stylus = require("gulp-stylus")
 coffee = require("gulp-coffee")
+browserSync = require('browser-sync').create()
 
 function error(mgs) {
     console.log("Error: " + msg)
 }
+
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: "./build"
+        }
+    })
+})
 
 gulp.task("coffeescript", function() {
     return gulp.src("src/**/*.coffee")
@@ -17,32 +26,21 @@ gulp.task("stylus", function() {
         .pipe(stylus({
           compress: true
         })).on("error", error)
-        .pipe(gulp.dest('build/'));
+        .pipe(gulp.dest('build/'))
+        .pipe(browserSync.stream())     
 })
 
-gulp.task("copy-windows", function() {
-    return gulp.src(["src/windows/**/*"])
-        .pipe(gulp.dest("./build/windows"))
+gulp.task("copy-files", function() {
+    return gulp.src(["src/**/*.html", "src/**/*.css", "src/**/*.js"])
+    .pipe(gulp.dest("build/"))
 })
-
-gulp.task("copy-entrypoint", function() {
-    return gulp.src(["src/main.js"])
-      .pipe(gulp.dest("./build/"))
-})
-
-gulp.task("copy-third-party", function() {
-    return gulp.src(["src/third_party/**/*"])
-      .pipe(gulp.dest("./build/third_party"))
-})
-
-gulp.task("copy-files", ["copy-windows", "copy-entrypoint", "copy-third-party"])
 
 gulp.task("build", ["coffeescript", "stylus", "copy-files"])
 
-gulp.task("watch", () => {
+gulp.task("watch", ["browser-sync"], () => {
     gulp.watch("src/**/*.styl", ["stylus"])
-    gulp.watch("src/**/*.coffee", ["coffeescript"])
-    gulp.watch(["src/windows/**/*", "src/main.js"], ["copy-files"])
+    gulp.watch("src/**/*.coffee", ["coffeescript"]).on('change', browserSync.reload)
+    gulp.watch(["src/**/*.html", "src/**/*.css", "src/**/*.js"], ["copy-files"]).on('change', browserSync.reload)
 })
 
 gulp.task("default", ["build", "watch"])

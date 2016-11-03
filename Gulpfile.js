@@ -27,11 +27,11 @@ gulp.task("stylus", function() {
           compress: true
         })).on("error", error)
         .pipe(gulp.dest('build/'))
-        .pipe(browserSync.stream())     
+        .pipe(browserSync.stream())
 })
 
 gulp.task("copy-files", function() {
-    return gulp.src(["src/**/*.html", "src/**/*.css", "src/**/*.js"])
+    return gulp.src(["!src/**/*.styl", "!src/**/*.coffee", "src/**/*"])
     .pipe(gulp.dest("build/"))
 })
 
@@ -40,7 +40,7 @@ gulp.task("build", ["coffeescript", "stylus", "copy-files"])
 gulp.task("watch", ["browser-sync"], () => {
     gulp.watch("src/**/*.styl", ["stylus"])
     gulp.watch("src/**/*.coffee", ["coffeescript"]).on('change', browserSync.reload)
-    gulp.watch(["src/**/*.html", "src/**/*.css", "src/**/*.js"], ["copy-files"]).on('change', browserSync.reload)
+    gulp.watch(["!src/**/*.styl", "!src/**/*.coffee", "src/**/*"], ["copy-files"]).on('change', browserSync.reload)
 })
 
 gulp.task("default", ["build", "watch"])

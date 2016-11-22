@@ -24,7 +24,7 @@ gulp.task("coffeescript", function() {
 gulp.task("stylus", function() {
     return gulp.src('src/**/*.styl')
         .pipe(stylus({
-          compress: true
+          compress: false
         })).on("error", error)
         .pipe(gulp.dest('build/'))
         .pipe(browserSync.stream())

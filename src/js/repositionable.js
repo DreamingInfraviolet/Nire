@@ -16,9 +16,7 @@ interact('.repositionable-handle')
       if (y < 0) y = 0 ;
       if(x + target.offsetWidth > container.offsetWidth) x = container.offsetWidth - target.offsetWidth;
       if(y + target.offsetHeight > container.offsetHeight) y = container.offsetHeight - target.offsetHeight;
-
-      console.log(y + " + " + target.offsetHeight*2 + " > " + container.offsetHeight)
-
+      
       // translate the element
       target.style.webkitTransform =
       target.style.transform =

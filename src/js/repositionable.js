@@ -3,6 +3,7 @@
 // This allows one to have a drag bad (or dragging area) if needed.
 interact('.repositionable-handle')
   .draggable({
+    max: 1,
     onmove: function (event) {
       var target = event.target.parentNode;
       // keep the dragged position in the data-x/data-y attributes
@@ -12,9 +13,9 @@ interact('.repositionable-handle')
       container = $(".resize-container")[0];
 
       if (x < 0) x = 0;
-      if (y + target.offsetHeight < 0) y = 0 - target.offsetHeight;
+      if (y < 0) y = 0 ;
       if(x + target.offsetWidth > container.offsetWidth) x = container.offsetWidth - target.offsetWidth;
-      if(y + target.offsetHeight*2 > container.offsetHeight) y = container.offsetHeight - target.offsetHeight*2;
+      if(y + target.offsetHeight > container.offsetHeight) y = container.offsetHeight - target.offsetHeight;
 
       console.log(y + " + " + target.offsetHeight*2 + " > " + container.offsetHeight)
 

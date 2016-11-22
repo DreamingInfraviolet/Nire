@@ -9,19 +9,25 @@ interact('.repositionable-handle')
       x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
       y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
+      container = $(".resize-container")[0];
+
+      if (x < 0) x = 0;
+      if (y + target.offsetHeight < 0) y = 0 - target.offsetHeight;
+      if(x + target.offsetWidth > container.offsetWidth) x = container.offsetWidth - target.offsetWidth;
+      if(y + target.offsetHeight*2 > container.offsetHeight) y = container.offsetHeight - target.offsetHeight*2;
+
+      console.log(y + " + " + target.offsetHeight*2 + " > " + container.offsetHeight)
+
       // translate the element
       target.style.webkitTransform =
       target.style.transform =
         'translate(' + x + 'px, ' + y + 'px)';
 
-      // update the posiion attributes
+      // update the position attributes
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
     },
-    inertia: true,
-    restrict: {
-        restriction: "parent"
-    }
+    inertia: true
   });
 
 interact('.resizable')

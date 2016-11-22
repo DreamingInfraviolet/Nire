@@ -1,6 +1,4 @@
 
-gInteractingWithElement = false;
-
 // Moving is done by affecting .repositionable-handle, while resizing is done by affecting .repositionable.
 // This allows one to have a drag bad (or dragging area) if needed.
 interact('.repositionable-handle')
@@ -19,11 +17,6 @@ interact('.repositionable-handle')
       // update the posiion attributes
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
-
-      gInteractingWithElement = true;
-    },
-    onend: function(event) {
-      gInteractingWithElement = false;
     },
     inertia: true,
     restrict: {

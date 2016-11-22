@@ -1,10 +1,15 @@
-interact('.repositionable')
+
+gInteractingWithElement = false;
+
+// Moving is done by affecting .repositionable-handle, while resizing is done by affecting .repositionable.
+// This allows one to have a drag bad (or dragging area) if needed.
+interact('.repositionable-handle')
   .draggable({
     onmove: function (event) {
-      var target = event.target,
-          // keep the dragged position in the data-x/data-y attributes
-          x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-          y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+      var target = event.target.parentNode;
+      // keep the dragged position in the data-x/data-y attributes
+      x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+      y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
       // translate the element
       target.style.webkitTransform =
@@ -14,18 +19,24 @@ interact('.repositionable')
       // update the posiion attributes
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
+
+      gInteractingWithElement = true;
+    },
+    onend: function(event) {
+      gInteractingWithElement = false;
     },
     inertia: true,
     restrict: {
         restriction: "parent"
     }
-  })
+  });
+
+interact('.repositionable')
   .resizable({
     preserveAspectRatio: false,
     edges: { left: true, right: true, bottom: true, top: true }
   })
   .on('resizemove', function (event) {
-    console.log("resizing")
     var target = event.target,
         x = (parseFloat(target.getAttribute('data-x')) || 0),
         y = (parseFloat(target.getAttribute('data-y')) || 0);
@@ -43,6 +54,5 @@ interact('.repositionable')
 
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
-    target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
   });
 

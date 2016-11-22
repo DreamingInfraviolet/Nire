@@ -10,5 +10,4 @@ computeDominantColour = (callback) ->
 $(document).ready ->
     computeDominantColour((image) ->
         colour = (new ColorThief()).getColor(image)
-        $(".overlay-element").css("background-color", colourArrayToRGB colour)
-        )
+        $(".overlay-element").css("background-color", colourArrayToRGB colour))

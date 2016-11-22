@@ -4,18 +4,33 @@
         <title>Nire</title>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="third_party/bootstrap.min.css" />
+        <link rel="stylesheet" href="third_party/rangeslider.css" />
         <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
-        <div class="wrapper">
+        <div class="wrapper">   
             <div class="resize-container">
-                <div id="text-area" class="repositionable overlay-element">Hey!!</div>            
+                <div id="text-area" class="repositionable overlay-element"><div class="repositionable-handle" id="text-area-handle">Hey!!</div></div>
+                <div id="slider-area" class="repositionable overlay-element">
+                    <div class="repositionable-handle">
+                        <div class="dragbar" css="background-color:black; display: block">XD</div>
+                    </div>
+                    <input
+                        type="range"
+                        min="10"                    // default 0
+                        max="1000"                  // default 100
+                        step="10"                   // default 1
+                        value="300"                 // default min + (max-min)/2
+                        data-orientation="vertical" // default horizontal
+                    >
+                </div>
             </div>
         </div>
         <script src="third_party/jquery.min.js"></script>
         <script src="third_party/bootstrap.min.js"></script>
         <script src="third_party/interact.min.js"></script>
         <script src="third_party/color-thief.min.js"></script>
+        <script src="third_party/rangeslider.min.js"></script>
         <script src="js/repositionable.js"></script>
         <script src="coffee/main.js"></script>
     </body>

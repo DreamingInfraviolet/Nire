@@ -24,7 +24,7 @@ interact('.repositionable-handle')
     }
   });
 
-interact('.repositionable')
+interact('.resizable')
   .resizable({
     preserveAspectRatio: false,
     edges: { left: true, right: true, bottom: true, top: true }

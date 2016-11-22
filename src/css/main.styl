@@ -1,3 +1,9 @@
+mFill()
+    margin 0
+    padding 0
+    width 100%
+    height 100%
+
 body
     background-image url("/images/FierySky.jpg")
     background-color black
@@ -7,3 +13,23 @@ body
     -o-background-size cover
     background-size cover
 
+.overlay-element
+  background-color #29e
+  color white
+  font-size 20px
+  font-family sans-serif
+  border-radius 8px
+  padding 20px
+  margin 30px 20px
+
+  width 100px
+  margin 0 0 0 0
+
+  /* This makes things *much* easier */
+  box-sizing border-box
+
+.wrapper, .resize-container, html, body
+    mFill()
+
+.resize-container
+    margin 20px
